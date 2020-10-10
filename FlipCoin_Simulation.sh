@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-read -p "Enter The Number of Times coin to be Flipped " num
+read -p "Enter the Number of Times Coin to be Flipped " num
 head=1
 tail=0
 headcount=0
@@ -30,6 +30,17 @@ then
 	diff=$(($tailcount-$headcount))
 else
 	echo "no one wins "
+	while [ $diff -lt 2 ]
+	do
+	result=$((RANDOM%2))
+	if [ $result -eq $head ]
+	then
+	((headcount++))
+	else
+	((tailcount++))
+	fi
+	diff=$(($headcount-$tailcount))
+done
 fi
 
 echo "difference is "$diff
